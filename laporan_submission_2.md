@@ -79,10 +79,25 @@ Untuk memahami lebih dalam mengenai dataset, beberapa tahapan eksplorasi data di
 
 1. **Pemeriksaan Dimensi dan Tipe Data**:
    - Menggunakan `df.info()` untuk melihat jumlah baris dan kolom, serta tipe data dari setiap variabel.
+     
+     <img width="248" alt="info-dataset" src="https://github.com/user-attachments/assets/d43951ea-4850-442d-9113-4497faad9dae">
+
    - Menggunakan `df.describe()` untuk mendapatkan statistik deskriptif seperti mean, median, standar deviasi, dan nilai maksimum/minimum dari fitur numerik.
+     
+     <img width="370" alt="stats-deskriptif" src="https://github.com/user-attachments/assets/bbba7d25-79f5-43a5-93d9-906f8f47a01a">
+
    - Menggunakan `df.head()` untuk melihat beberapa baris pertama dari dataset.
+   - 
+   <img width="377" alt="baris_pertama1" src="https://github.com/user-attachments/assets/b9dea3f8-9612-4eda-bcfa-5f3e0a0c9bf4">
+  
+   <img width="328" alt="baris_pertama2" src="https://github.com/user-attachments/assets/b246407e-03e3-4f96-aec2-cf237485d251">
+
+   <img width="275" alt="baris_pertama3" src="https://github.com/user-attachments/assets/ff5ebdb7-8c49-48bf-b238-0e52250ebf78">
+
    - Menggunakan `df.isnull().sum()` untuk memeriksa apakah terdapat nilai yang hilang dalam dataset. Jika ada, langkah penanganan perlu dilakukan.
    - Menggunakan `df.duplicated().sum()` untuk menghitung jumlah baris yang merupakan duplikat dalam dataset. Data duplikat dapat menyebabkan bias dalam model dan analisis.
+     
+     <img width="175" alt="jumlah" src="https://github.com/user-attachments/assets/639b9c27-2887-4ec3-8679-298687549a1b">
 
 2. **Visualisasi Distribusi Genre**:
    - Menggunakan `sns.countplot()` untuk memvisualisasikan distribusi genre film dalam dataset. Hal ini penting untuk memahami kategori mana yang paling umum dan yang mungkin perlu ditangani secara khusus dalam model rekomendasi. Dengan visualisasi ini, kita dapat dengan mudah melihat genre mana yang mendominasi dataset dan melakukan analisis lebih lanjut berdasarkan hasil tersebut
