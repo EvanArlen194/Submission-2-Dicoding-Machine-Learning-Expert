@@ -53,7 +53,7 @@ Untuk mencapai tujuan ini, peneliti mengusulkan beberapa solusi yang akan diuji 
 
 ### Informasi Dataset
 
-Dataset yang digunakan dalam proyek ini adalah **[The Movies Dataset](https://www.kaggle.com/datasets/rounakbanik/the-movies-dataset)**. Dataset ini berisi informasi tentang berbagai film, termasuk atribut seperti judul, genre, sinopsis, dan rating. Dataset ini banyak digunakan dalam penelitian sistem rekomendasi untuk memberikan saran film berdasarkan preferensi pengguna.
+Dataset yang digunakan dalam proyek ini adalah **[The Movies Dataset](https://www.kaggle.com/datasets/rounakbanik/the-movies-dataset)**. Dataset ini terdiri dari 46.628 baris dan 27 kolom, di mana setiap baris berisi informasi tentang berbagai film, termasuk atribut seperti judul, genre, sinopsis, dan rating. Dataset ini banyak digunakan dalam penelitian sistem rekomendasi untuk memberikan saran film berdasarkan preferensi pengguna.
 
 ### Deskripsi Variabel
 
