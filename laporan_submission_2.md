@@ -85,7 +85,7 @@ Untuk memahami lebih dalam mengenai dataset, beberapa tahapan eksplorasi data di
    - Menggunakan `df.duplicated().sum()` untuk menghitung jumlah baris yang merupakan duplikat dalam dataset. Data duplikat dapat menyebabkan bias dalam model dan analisis.
 
 2. **Visualisasi Distribusi Genre**:
-   - Menggunakan `sns.countplot()` untuk memvisualisasikan distribusi genre film dalam dataset. Hal ini penting untuk memahami kategori mana yang paling umum dan yang mungkin perlu ditangani secara khusus dalam model rekomendasi.
+   - Menggunakan `sns.countplot()` untuk memvisualisasikan distribusi genre film dalam dataset. Hal ini penting untuk memahami kategori mana yang paling umum dan yang mungkin perlu ditangani secara khusus dalam model rekomendasi. Dengan visualisasi ini, kita dapat dengan mudah melihat genre mana yang mendominasi dataset dan melakukan analisis lebih lanjut berdasarkan hasil tersebut
 ![countplot_2](https://github.com/user-attachments/assets/09ec764b-5cf8-4886-b6c6-d4d853ae23c7)
 
 ### Kesimpulan
@@ -153,6 +153,18 @@ Pada proyek ini, beberapa algoritma digunakan untuk membangun sistem rekomendasi
   - Memerlukan data interaksi yang cukup untuk bekerja dengan baik.
   - Lebih kompleks dalam implementasi dibandingkan metode berbasis konten.
 
+#### Evaluasi Model TF-IDF dan K-Nearest Neighbors (KNN)
+Berikut adalah hasil model TF-IDF dan K-Nearest Neighbors (KNN)
+```python
+# Contoh rekomendasi untuk film
+get_recommendations('Batman')
+```
+<img width="172" alt="title" src="https://github.com/user-attachments/assets/f65da0da-d171-4a0f-a922-5c499a186bb7">
+
+Hasil ini menunjukkan bagaimana model KNN menggunakan representasi TF-IDF dari film untuk merekomendasikan film yang dianggap mirip berdasarkan konten yang ada. Sehingga dapat disimpulkan bahwa KNN beroperasi dengan mendeteksi kemiripan antara film yang telah ditonton pengguna dan film lain dalam dataset berdasarkan fitur konten (seperti sinopsis, genre, dan kata kunci). Proses ini tidak mempertimbangkan preferensi pribadi pengguna, seperti sejarah penonton, rating individu, atau interaksi pengguna dengan film lain. KNN mengandalkan metrik jarak (seperti cosine similarity) untuk menentukan film mana yang mirip tanpa mempertimbangkan faktor-faktor yang lebih personal. Misalnya, dua pengguna mungkin memiliki kesamaan dalam film yang mereka tonton, tetapi preferensi mereka terhadap genre, sutradara, atau aktor tertentu mungkin berbeda. KNN tidak memperhitungkan perbedaan ini, yang dapat mengakibatkan rekomendasi yang kurang relevan.
+
+Dalam konteks dataset yang lebih besar, film yang lebih populer cenderung memiliki lebih banyak data dan dapat memengaruhi rekomendasi. Film yang mirip mungkin diutamakan meskipun tidak relevan dengan preferensi individu pengguna. Ini dapat menyebabkan pengguna menerima rekomendasi film yang mungkin tidak sesuai dengan minat mereka. KNN tidak menggunakan umpan balik langsung dari pengguna untuk memperbarui model rekomendasi. Misalnya, jika pengguna memberikan rating tinggi pada film tertentu tetapi tidak menyukai film lain, KNN tidak dapat menyesuaikan rekomendasi untuk mencerminkan preferensi ini.
+
 #### Evaluasi Model SVD
 Model SVD dievaluasi menggunakan teknik cross-validation. Berikut adalah hasil evaluasi model menggunakan RMSE (Root Mean Square Error) dan MAE (Mean Absolute Error):
 
@@ -205,7 +217,7 @@ Sistem rekomendasi film yang efektif telah dikembangkan dengan memanfaatkan kesa
 
 Sistem rekomendasi yang dibangun mampu memberikan saran film yang sesuai dengan preferensi pengguna, berdasarkan analisis konten dari film yang telah ditonton sebelumnya. Melalui analisis atribut film seperti genre, sinopsis, dan kata kunci, sistem berhasil menemukan film yang mirip dan relevan, meningkatkan pengalaman pengguna dalam menemukan film baru. Hasil perbandingan antara **Content-Based Filtering** dan **Collaborative Filtering** menunjukkan bahwa kedua pendekatan memiliki kelebihan masing-masing, sehingga memberikan wawasan berharga untuk pengembangan lebih lanjut.
 
-Solusi yang diusulkan, yaitu penerapan KNN dan SVD, memberikan kontribusi signifikan terhadap efektivitas sistem rekomendasi. Pengguna mendapatkan rekomendasi yang lebih tepat dan personal, sesuai dengan preferensi mereka. Proses preprocessing yang dilakukan memastikan bahwa informasi yang digunakan dalam analisis akurat dan relevan. Ini membantu dalam meningkatkan kinerja model dan validitas hasil rekomendasi. Kinerja setiap pendekatan dievaluasi dengan metrik relevansi, seperti akurasi dan kepuasan pengguna. Hasil evaluasi menunjukkan bahwa sistem rekomendasi yang dikembangkan dapat meningkatkan pengalaman pengguna dalam mencari film.
+Solusi yang diusulkan, yaitu penerapan KNN dan SVD, memberikan kontribusi signifikan terhadap efektivitas sistem rekomendasi. Pengguna mendapatkan rekomendasi yang lebih tepat dan personal, sesuai dengan preferensi mereka. Proses preprocessing yang dilakukan memastikan bahwa informasi yang digunakan dalam analisis akurat dan relevan. Ini membantu dalam meningkatkan kinerja model dan validitas hasil rekomendasi. Hasil evaluasi menunjukkan bahwa sistem rekomendasi yang dikembangkan dapat meningkatkan pengalaman pengguna dalam mencari film.
 
 ### Kesimpulan
 Secara keseluruhan, evaluasi ini menunjukkan bahwa model yang dikembangkan berhasil menjawab problem statements, mencapai goals yang diharapkan, dan memberikan dampak positif sesuai dengan solusi statement yang diusulkan. Sistem rekomendasi film ini dapat menjadi alat yang efektif untuk meningkatkan pengalaman pengguna dalam menemukan film yang sesuai dengan preferensi mereka, serta memberikan nilai tambah bagi platform rekomendasi film.
