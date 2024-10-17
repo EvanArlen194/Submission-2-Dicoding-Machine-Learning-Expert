@@ -86,6 +86,7 @@ Untuk memahami lebih dalam mengenai dataset, beberapa tahapan eksplorasi data di
 
 2. **Visualisasi Distribusi Genre**:
    - Menggunakan `sns.countplot()` untuk memvisualisasikan distribusi genre film dalam dataset. Hal ini penting untuk memahami kategori mana yang paling umum dan yang mungkin perlu ditangani secara khusus dalam model rekomendasi.
+![countplot_2](https://github.com/user-attachments/assets/09ec764b-5cf8-4886-b6c6-d4d853ae23c7)
 
 ### Kesimpulan
 
@@ -185,26 +186,17 @@ Pada proyek ini, model yang dikembangkan berfokus pada kasus rekomendasi dan men
 #### Root Mean Square Error (RMSE)
 *RMSE* digunakan untuk mengukur seberapa jauh prediksi rating yang diberikan oleh model dari rating yang sebenarnya. Metrik ini memberikan informasi mengenai seberapa besar kesalahan model dalam memberikan rekomendasi.
 
-- **Formula**:
-  \[
-  \text{RMSE} = \sqrt{\frac{1}{N} \sum_{i=1}^{N} (y_i - \hat{y}_i)^2}
-  \]
-  Di mana:
-  - \( N \) adalah jumlah total prediksi.
-  - \( y_i \) adalah rating yang sebenarnya.
-  - \( \hat{y}_i \) adalah rating yang diprediksi oleh model.
+<img width="269" alt="RMSE" src="https://github.com/user-attachments/assets/0cd876f9-bbd7-4a14-a077-59078560e124">
 
 #### Mean Absolute Error (MAE)
 *MAE* mengukur kesalahan rata-rata antara nilai yang diprediksi dan nilai sebenarnya. Metrik ini membantu kita memahami rata-rata seberapa jauh model melakukan kesalahan.
 
-- **Formula**:
-  \[
-  \text{MAE} = \frac{1}{N} \sum_{i=1}^{N} |y_i - \hat{y}_i|
-  \]
-  Di mana:
-  - \( N \) adalah jumlah total prediksi.
-  - \( y_i \) adalah rating yang sebenarnya.
-  - \( \hat{y}_i \) adalah rating yang diprediksi oleh model.
+<img width="275" alt="MAE" src="https://github.com/user-attachments/assets/47f9d8c2-6403-4721-8aff-d308f644709f">
+
+#### Perbandingan antara MAE dan RMSE
+- Sensitivitas terhadap Outlier: RMSE lebih sensitif terhadap outlier dibandingkan dengan MAE. Jika ada nilai yang jauh dari prediksi, RMSE akan memberikan penalti yang lebih besar.
+- Interpretasi: MAE memberikan gambaran yang lebih jelas tentang kesalahan rata-rata dalam unit yang sama dengan data. RMSE, di sisi lain, mengukur kesalahan dalam unit kuadrat dan sering kali memberikan informasi tentang kesalahan yang lebih besar.
+- Penggunaan: MAE lebih sering digunakan ketika kesalahan besar tidak terlalu penting, sedangkan RMSE lebih cocok digunakan ketika penalti untuk kesalahan besar perlu diperhitungkan.
 
 ### Hasil Evaluasi
 
