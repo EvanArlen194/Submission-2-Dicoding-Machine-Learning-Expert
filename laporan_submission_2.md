@@ -170,11 +170,19 @@ Pada proyek ini, beberapa algoritma digunakan untuk membangun sistem rekomendasi
 
 #### Evaluasi Model TF-IDF dan K-Nearest Neighbors (KNN)
 Berikut adalah hasil model TF-IDF dan K-Nearest Neighbors (KNN)
+
 ```python
-# Contoh rekomendasi untuk film
-get_recommendations('Batman')
+# Dapatkan rekomendasi untuk film 'Batman'
+recommended_titles = get_recommendations('Batman')
+
+# Hitung precision
+precision = precision_at_k(recommended_titles, relevant_titles)
+
+# Tampilkan hasil
+print(f"Recommended Titles: {list(recommended_titles)}")
+print(f"Precision: {precision:.2f}")
 ```
-<img width="172" alt="title" src="https://github.com/user-attachments/assets/f65da0da-d171-4a0f-a922-5c499a186bb7">
+<img width="700" alt="precision_recommended" src="https://github.com/user-attachments/assets/7731df05-d5a1-4507-a29d-0d652871ddc5">
 
 Hasil ini menunjukkan bagaimana model KNN menggunakan representasi TF-IDF dari film untuk merekomendasikan film yang dianggap mirip berdasarkan konten yang ada. Sehingga dapat disimpulkan bahwa KNN beroperasi dengan mendeteksi kemiripan antara film yang telah ditonton pengguna dan film lain dalam dataset berdasarkan fitur konten (seperti sinopsis, genre, dan kata kunci). Proses ini tidak mempertimbangkan preferensi pribadi pengguna, seperti sejarah penonton, rating individu, atau interaksi pengguna dengan film lain. KNN mengandalkan metrik jarak (seperti cosine similarity) untuk menentukan film mana yang mirip tanpa mempertimbangkan faktor-faktor yang lebih personal. Misalnya, dua pengguna mungkin memiliki kesamaan dalam film yang mereka tonton, tetapi preferensi mereka terhadap genre, sutradara, atau aktor tertentu mungkin berbeda. KNN tidak memperhitungkan perbedaan ini, yang dapat mengakibatkan rekomendasi yang kurang relevan.
 
@@ -189,6 +197,8 @@ Model SVD dievaluasi menggunakan teknik cross-validation. Berikut adalah hasil e
 | **MAE (testset)**   | 0.6921 | 0.6889 | 0.6937 | 0.6886 | 0.6900 | 0.6906  | 0.0020  |
 | **Fit time**        | 1.70   | 1.71   | 1.68   | 1.71   | 2.47   | 1.85    | 0.31    |
 | **Test time**       | 0.17   | 0.16   | 0.13   | 0.36   | 0.22   | 0.21    | 0.08    |
+
+<img width="277" alt="top_n_recommendations" src="https://github.com/user-attachments/assets/2491577c-66e4-4cba-93ed-1372017b2b0e">
 
 Melalui evaluasi model, kita mendapatkan pemahaman yang lebih baik tentang akurasi model dalam memprediksi rating. RMSE dan MAE memberikan gambaran mengenai seberapa jauh prediksi kita dari nilai sebenarnya, menunjukkan efektivitas pendekatan collaborative filtering dalam memanfaatkan interaksi pengguna untuk memberikan rekomendasi.
 
@@ -208,17 +218,19 @@ Pada proyek ini, model yang dikembangkan berfokus pada kasus rekomendasi dan men
 | **RMSE (testset)**  | 0.8966 | 0.8938 | 0.9024 | 0.8944 | 0.8960 | 0.8966  | 0.0031  |
 | **MAE (testset)**   | 0.6921 | 0.6889 | 0.6937 | 0.6886 | 0.6900 | 0.6906  | 0.0020  |
 
+<img width="277" alt="top_n_recommendations" src="https://github.com/user-attachments/assets/997c648b-42a7-4265-8398-b56bbf9e9103">
+
 ### Penjelasan Metrik
 
 #### Root Mean Square Error (RMSE)
 *RMSE* digunakan untuk mengukur seberapa jauh prediksi rating yang diberikan oleh model dari rating yang sebenarnya. Metrik ini memberikan informasi mengenai seberapa besar kesalahan model dalam memberikan rekomendasi.
 
-<img width="269" alt="RMSE" src="https://github.com/user-attachments/assets/0cd876f9-bbd7-4a14-a077-59078560e124">
+<img width="261" alt="RMSE" src="https://github.com/user-attachments/assets/a39504f6-81b5-4a6a-8cff-f8bfd031f5cd">
 
 #### Mean Absolute Error (MAE)
 *MAE* mengukur kesalahan rata-rata antara nilai yang diprediksi dan nilai sebenarnya. Metrik ini membantu kita memahami rata-rata seberapa jauh model melakukan kesalahan.
 
-<img width="275" alt="MAE" src="https://github.com/user-attachments/assets/47f9d8c2-6403-4721-8aff-d308f644709f">
+<img width="235" alt="MAE" src="https://github.com/user-attachments/assets/803b7736-621c-4db1-bda2-b79cb1a71aa8">
 
 #### Perbandingan antara MAE dan RMSE
 - Sensitivitas terhadap Outlier: RMSE lebih sensitif terhadap outlier dibandingkan dengan MAE. Jika ada nilai yang jauh dari prediksi, RMSE akan memberikan penalti yang lebih besar.
