@@ -211,7 +211,44 @@ Untuk memberikan rekomendasi kepada pengguna, model SVD memungkinkan kita untuk 
 
 ## Evaluation
 
-Pada proyek ini, model yang dikembangkan berfokus pada kasus rekomendasi dan menggunakan metrik evaluasi yang mencakup **Root Mean Square Error (RMSE)** dan **Mean Absolute Error (MAE)**. Hasil pengukuran performa model terbaik yang menggunakan algoritma **Singular Value Decomposition (SVD)** dapat dilihat pada tabel di bawah ini:
+## Model Content-Based Filtering
+
+<img width="700" alt="precision_recommended" src="https://github.com/user-attachments/assets/7731df05-d5a1-4507-a29d-0d652871ddc5">
+
+Pada proyek ini, model **Content-Based Filtering**  yang dikembangkan berfokus pada kasus rekomendasi dan menggunakan metrik **Precision**. **Precision** adalah metrik evaluasi yang digunakan untuk mengukur akurasi dari sistem rekomendasi, khususnya dalam konteks **content-based filtering**. Metrik ini membantu menilai seberapa relevan rekomendasi yang diberikan kepada pengguna dibandingkan dengan daftar item yang dianggap relevan.
+
+### Definisi Precision
+Precision dihitung dengan membagi jumlah item yang relevan yang direkomendasikan oleh model dengan jumlah total item yang direkomendasikan. Dalam istilah formal, rumus precision dapat dituliskan sebagai berikut:
+
+$$\
+\text{Precision} = \frac{\text{Jumlah item relevan yang direkomendasikan}}{\text{Total item yang direkomendasikan}}
+\$$
+
+### Penjelasan Metrik
+1. **Jumlah item relevan yang direkomendasikan**: Ini adalah jumlah film (atau item) yang direkomendasikan oleh sistem yang juga dianggap relevan atau diinginkan oleh pengguna.
+2. **Total item yang direkomendasikan**: Ini adalah jumlah total item yang direkomendasikan oleh sistem.
+
+### Mengapa Precision Penting?
+- **Relevansi**: Precision memberikan gambaran tentang relevansi rekomendasi yang diberikan kepada pengguna. Sistem dengan precision tinggi berarti sebagian besar rekomendasi yang diberikan adalah item yang memang ingin dilihat atau digunakan oleh pengguna.
+- **Pengalaman Pengguna**: Dengan meningkatkan precision, pengalaman pengguna menjadi lebih baik karena mereka cenderung mendapatkan rekomendasi yang lebih sesuai dengan preferensi mereka.
+
+### Contoh
+Misalkan terdapat sistem rekomendasi yang merekomendasikan 10 film kepada pengguna, dan dari 10 film tersebut, 7 film ternyata relevan (pengguna menyukai film tersebut). Dalam hal ini, precision dihitung sebagai:
+
+$$\
+\text{Precision} = \frac{7}{10} = 0.7
+\$$
+
+Ini berarti bahwa 70% dari rekomendasi yang diberikan oleh sistem adalah relevan untuk pengguna.
+
+### Precision dalam Content-Based Filtering
+Dalam konteks **content-based filtering**, precision sangat berguna karena sistem ini merekomendasikan item berdasarkan kesamaan konten dengan item yang sebelumnya disukai oleh pengguna. Misalnya, jika pengguna menyukai film tertentu, sistem akan merekomendasikan film lain yang memiliki kesamaan dalam genre, aktor, atau tema.
+
+Precision adalah metrik penting untuk mengevaluasi efektivitas sistem rekomendasi, terutama dalam **content-based filtering**. Metrik ini membantu memastikan bahwa rekomendasi yang diberikan benar-benar relevan dan sesuai dengan preferensi pengguna, yang pada akhirnya meningkatkan kepuasan pengguna terhadap sistem.
+
+## Model Collaborative Filtering
+
+Pada proyek ini, model **Collaborative Filtering** yang dikembangkan berfokus pada kasus rekomendasi dan menggunakan metrik evaluasi yang mencakup **Root Mean Square Error (RMSE)** dan **Mean Absolute Error (MAE)**. Hasil pengukuran performa model terbaik yang menggunakan algoritma **Singular Value Decomposition (SVD)** dapat dilihat pada tabel di bawah ini:
 
 | Metrik              | Fold 1 | Fold 2 | Fold 3 | Fold 4 | Fold 5 | Mean    | Std     |
 |---------------------|--------|--------|--------|--------|--------|---------|---------|
