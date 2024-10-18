@@ -145,17 +145,19 @@ Terakhir, dibuatlah sebuah series yang memetakan judul film ke indeksnya. Langka
 
 Pada proyek ini, beberapa algoritma digunakan untuk membangun sistem rekomendasi film, baik berbasis konten maupun collaborative filtering. Tujuan dari tahapan ini adalah untuk memberikan rekomendasi film yang relevan kepada pengguna. Berikut adalah model-model yang digunakan beserta tahapan dan parameter yang diaplikasikan:
 
-### 1. TF-IDF dan Nearest Neighbors
+### 1. Nearest Neighbors
 - **Tahapan**: 
-  TF-IDF (Term Frequency-Inverse Document Frequency) digunakan untuk mengonversi deskripsi film menjadi representasi numerik. KNN digunakan untuk menemukan film yang paling mirip berdasarkan jarak antar film dalam representasi TF-IDF.
-  - **Parameter utama**: K (jumlah tetangga) dan metric (jarak cosine).
-  - **Scaling data**: KNN sensitif terhadap skala fitur, tetapi pada proyek ini kita menggunakan representasi yang dihasilkan oleh TF-IDF sehingga scaling tidak diperlukan.
+  Nearest Neighbors digunakan untuk menemukan film yang paling mirip berdasarkan representasi numerik yang dihasilkan oleh TF-IDF (Term Frequency-Inverse Document Frequency) dari deskripsi film.
+  - **Parameter utama**: Jumlah tetangga (K) dan metrik yang digunakan untuk menghitung jarak, biasanya jarak cosine.
+  - **Scaling data**: Nearest neighbors sensitif terhadap skala fitur, tetapi dalam konteks ini, penggunaan representasi TF-IDF mengurangi kebutuhan akan scaling.
+
 - **Kelebihan**: 
-  - Mudah diimplementasikan dan memberikan hasil yang intuitif.
-  - Sangat efektif untuk rekomendasi berbasis konten, terutama ketika ada deskripsi yang cukup mendetail.
+  - Implementasi yang sederhana dan hasil yang intuitif.
+  - Sangat efektif untuk rekomendasi berbasis konten, terutama jika deskripsi film cukup mendetail.
+
 - **Kekurangan**: 
-  - Performa bisa menurun pada dataset yang sangat besar karena harus menghitung jarak untuk setiap data baru.
-  - Memerlukan waktu komputasi yang lebih lama saat jumlah film meningkat.
+  - Performa dapat menurun pada dataset yang sangat besar karena harus menghitung jarak antara semua data baru dan film yang ada.
+  - Waktu komputasi bisa meningkat seiring dengan bertambahnya jumlah film dalam dataset.
 
 ### 2. Singular Value Decomposition (SVD)
 - **Tahapan**:
@@ -184,9 +186,9 @@ print(f"Precision: {precision:.2f}")
 ```
 <img width="700" alt="precision_recommended" src="https://github.com/user-attachments/assets/7731df05-d5a1-4507-a29d-0d652871ddc5">
 
-Hasil ini menunjukkan bagaimana model Nearest Neighbors menggunakan representasi TF-IDF dari film untuk merekomendasikan film yang dianggap mirip berdasarkan konten yang ada. Sehingga dapat disimpulkan bahwa Nearest Neighbors beroperasi dengan mendeteksi kemiripan antara film yang telah ditonton pengguna dan film lain dalam dataset berdasarkan fitur konten (seperti sinopsis, genre, dan kata kunci). Proses ini tidak mempertimbangkan preferensi pribadi pengguna, seperti sejarah penonton, rating individu, atau interaksi pengguna dengan film lain. Nearest Neighbors mengandalkan metrik jarak (seperti cosine similarity) untuk menentukan film mana yang mirip tanpa mempertimbangkan faktor-faktor yang lebih personal. Misalnya, dua pengguna mungkin memiliki kesamaan dalam film yang mereka tonton, tetapi preferensi mereka terhadap genre, sutradara, atau aktor tertentu mungkin berbeda. KNN tidak memperhitungkan perbedaan ini, yang dapat mengakibatkan rekomendasi yang kurang relevan.
+Hasil ini menunjukkan bagaimana model Nearest Neighbors menggunakan representasi TF-IDF dari film untuk merekomendasikan film yang dianggap mirip berdasarkan konten yang ada. Sehingga dapat disimpulkan bahwa Nearest Neighbors beroperasi dengan mendeteksi kemiripan antara film yang telah ditonton pengguna dan film lain dalam dataset berdasarkan fitur konten (seperti sinopsis, genre, dan kata kunci). Proses ini tidak mempertimbangkan preferensi pribadi pengguna, seperti sejarah penonton, rating individu, atau interaksi pengguna dengan film lain. Nearest Neighbors mengandalkan metrik jarak (seperti cosine similarity) untuk menentukan film mana yang mirip tanpa mempertimbangkan faktor-faktor yang lebih personal. Misalnya, dua pengguna mungkin memiliki kesamaan dalam film yang mereka tonton, tetapi preferensi mereka terhadap genre, sutradara, atau aktor tertentu mungkin berbeda. Nearest Neighbors tidak memperhitungkan perbedaan ini, yang dapat mengakibatkan rekomendasi yang kurang relevan.
 
-Dalam konteks dataset yang lebih besar, film yang lebih populer cenderung memiliki lebih banyak data dan dapat memengaruhi rekomendasi. Film yang mirip mungkin diutamakan meskipun tidak relevan dengan preferensi individu pengguna. Ini dapat menyebabkan pengguna menerima rekomendasi film yang mungkin tidak sesuai dengan minat mereka. KNN tidak menggunakan umpan balik langsung dari pengguna untuk memperbarui model rekomendasi. Misalnya, jika pengguna memberikan rating tinggi pada film tertentu tetapi tidak menyukai film lain, Nearest Neighbors tidak dapat menyesuaikan rekomendasi untuk mencerminkan preferensi ini.
+Dalam konteks dataset yang lebih besar, film yang lebih populer cenderung memiliki lebih banyak data dan dapat memengaruhi rekomendasi. Film yang mirip mungkin diutamakan meskipun tidak relevan dengan preferensi individu pengguna. Ini dapat menyebabkan pengguna menerima rekomendasi film yang mungkin tidak sesuai dengan minat mereka. Nearest Neighbors tidak menggunakan umpan balik langsung dari pengguna untuk memperbarui model rekomendasi. Misalnya, jika pengguna memberikan rating tinggi pada film tertentu tetapi tidak menyukai film lain, Nearest Neighbors tidak dapat menyesuaikan rekomendasi untuk mencerminkan preferensi ini.
 
 #### Evaluasi Model SVD
 Model SVD dievaluasi menggunakan teknik cross-validation. Berikut adalah hasil evaluasi model menggunakan RMSE (Root Mean Square Error) dan MAE (Mean Absolute Error):
@@ -277,7 +279,7 @@ Pada proyek ini, model **Collaborative Filtering** yang dikembangkan berfokus pa
 ### Hasil Evaluasi
 
 Model yang dikembangkan dengan menggunakan **Content-Based Filtering** (Nearest Neighbors) dan **Collaborative Filtering** (SVD) berhasil menjawab problem statements yang telah dirumuskan. Dengan demikian, proyek ini mencapai beberapa tujuan yang telah ditetapkan.
-Sistem rekomendasi film yang efektif telah dikembangkan dengan memanfaatkan kesamaan konten film. Melalui analisis deskripsi film dan atribut lainnya, model dapat menyarankan film berdasarkan apa yang telah ditonton pengguna sebelumnya. Rekomendasi yang diberikan telah terbukti relevan dan sesuai dengan preferensi pengguna, terutama dalam konteks film yang memiliki genre atau tema tertentu. Metrik evaluasi menunjukkan bahwa pengguna mendapatkan saran film yang sesuai dengan minat mereka. Evaluasi efektivitas antara **Content-Based Filtering** dan **Collaborative Filtering** berhasil dilakukan. KNN menunjukkan performa yang baik dalam merekomendasikan film berdasarkan kesamaan konten, sedangkan SVD menunjukkan kemampuannya dalam memahami pola preferensi pengguna yang lebih luas.
+Sistem rekomendasi film yang efektif telah dikembangkan dengan memanfaatkan kesamaan konten film. Melalui analisis deskripsi film dan atribut lainnya, model dapat menyarankan film berdasarkan apa yang telah ditonton pengguna sebelumnya. Rekomendasi yang diberikan telah terbukti relevan dan sesuai dengan preferensi pengguna, terutama dalam konteks film yang memiliki genre atau tema tertentu. Metrik evaluasi menunjukkan bahwa pengguna mendapatkan saran film yang sesuai dengan minat mereka. Evaluasi efektivitas antara **Content-Based Filtering** dan **Collaborative Filtering** berhasil dilakukan. Nearest Neighbors menunjukkan performa yang baik dalam merekomendasikan film berdasarkan kesamaan konten, sedangkan SVD menunjukkan kemampuannya dalam memahami pola preferensi pengguna yang lebih luas.
 
 Sistem rekomendasi yang dibangun mampu memberikan saran film yang sesuai dengan preferensi pengguna, berdasarkan analisis konten dari film yang telah ditonton sebelumnya. Melalui analisis atribut film seperti genre, sinopsis, dan kata kunci, sistem berhasil menemukan film yang mirip dan relevan, meningkatkan pengalaman pengguna dalam menemukan film baru. Hasil perbandingan antara **Content-Based Filtering** dan **Collaborative Filtering** menunjukkan bahwa kedua pendekatan memiliki kelebihan masing-masing, sehingga memberikan wawasan berharga untuk pengembangan lebih lanjut.
 
